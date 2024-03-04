@@ -8,7 +8,6 @@ public class App {
 
 
         BST<Integer> binaryTree = new BST<>();
-        ArrayList<Integer> liste = new ArrayList<>();
         binaryTree.insert(45);
         binaryTree.insert(22);
         binaryTree.insert(11);
