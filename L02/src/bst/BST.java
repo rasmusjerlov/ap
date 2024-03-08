@@ -1,5 +1,8 @@
 package bst;
 
+
+import java.util.ArrayList;
+
 public class BST<E> implements Tree<E> {
     protected TreeNode<E> root;
     protected int size = 0;
@@ -18,7 +21,64 @@ public class BST<E> implements Tree<E> {
     public BST(java.util.Comparator<E> c) {
         this.c = c;
     }
+    //Methode that removes and returns lowest value in the tree
+    public E removeMin() {
+        if (root == null) {
+            return null;
+        }
+        TreeNode<E> parent = null;
+        TreeNode<E> current = root;
+        while (current.left != null) {
+            parent = current;
+            current = current.left;
+        }
+        if (parent == null) {
+            root = current.right;
+        } else {
+            parent.left = current.right;
+        }
+        size--;
+        return current.element;
+    }
 
+    public E removeMax() {
+        if (root == null) {
+            return null;
+        }
+        TreeNode<E> parent = null;
+        TreeNode<E> current = root;
+        while (current.right != null) {
+            parent = current;
+            current = current.right;
+        }
+        if (parent == null) {
+            root = current.left;
+        } else {
+            parent.right = current.left;
+        }
+        size--;
+        return current.element;
+    }
+
+    //methode that returns all elements in an arraylist greater than a given value
+    public ArrayList<E> getGreaterThan(E e) {
+        ArrayList<E> list = new ArrayList<>();
+        getGreaterThan(root, e, list);
+        list.sort(c);
+        return list;
+    }
+
+    private void getGreaterThan(TreeNode<E> node, E e, ArrayList<E> list) {
+        if (node == null) {
+            return;
+        }
+        if (c.compare(node.element, e) > 0) {
+            list.add(node.element);
+        }
+        getGreaterThan(node.left, e, list);
+        getGreaterThan(node.right, e, list);
+
+    }
     /**
      * Create a binary tree from an array of objects
      */

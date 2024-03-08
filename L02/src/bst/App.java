@@ -1,6 +1,7 @@
 package bst;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class App {
@@ -30,5 +31,10 @@ public class App {
         System.out.println("Height: " + binaryTree.getHeight(root));
         System.out.println("Depth: " + binaryTree.getDepth(root));
         System.out.println("Is " + testTal + " intern?: " + binaryTree.isIntern(testTal));
+//        System.out.println(binaryTree.removeMin());
+//        System.out.println(binaryTree.removeMax());
+        System.out.println(binaryTree.getGreaterThan(22));
+
+
     }
 }
