@@ -61,7 +61,6 @@ public class HashSetChaining {
 			} else {
 				current = current.next;
 			}
-
 		}
 		if (!found) {
 			Node newNode = new Node();
@@ -94,7 +93,6 @@ public class HashSetChaining {
 	 *         element of this set
 	 */
 	public boolean remove(Object x) {
-		// TODO Opgave 2
 		int h = hashValue(x);
 		Node current = buckets[h];
 		Node previous = null;

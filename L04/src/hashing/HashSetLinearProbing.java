@@ -4,7 +4,7 @@ package hashing;
  * This class implements a hash set using separate chaining.
  */
 public class HashSetLinearProbing {
-	private Object[] buckets;
+	public Object[] buckets;
 	private int currentSize;
 	private static final String DELETED = "DELETED";
 
@@ -27,8 +27,13 @@ public class HashSetLinearProbing {
 	 * @return true if x is an element of this set
 	 */
 	public boolean contains(Object x) {
+		for (Object o : buckets) {
+			if (o == x) {
+				System.out.println("Object: " + x + " is in the HashSet");
+				return true;
+			}
+		}
 
-		// TODO
 		return false;
 	}
 
@@ -40,8 +45,28 @@ public class HashSetLinearProbing {
 	 * @return true if x is a new object, false if x was already in the set
 	 */
 	public boolean add(Object x) {
-		// TODO
-		return false;
+		int h = hashValue(x); // 0-12
+		boolean found = false;
+		Object current = buckets[h];
+		while (!found && current != null) {
+			if (current.equals(DELETED)) {
+				current = x;
+			}
+			if (current.equals(x)) {
+				System.out.println("Object is already in the set.");
+				found = true;
+			} else {
+				h = (h % buckets.length) + 1;
+				current = buckets[h];
+			}
+		}
+
+		if (!found) {
+			buckets[h] = x;
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -53,8 +78,16 @@ public class HashSetLinearProbing {
 	 *         element of this set
 	 */
 	public boolean remove(Object x) {
-		// TODO
-		return false;
+		int h = hashValue(x);
+		Object current = buckets[h];
+		boolean found = false;
+		while (!found && current != null) {
+			if (current == x) {
+				current = DELETED;
+				found = true;
+			}
+		}
+		return found;
 	}
 
 	/**
@@ -66,7 +99,7 @@ public class HashSetLinearProbing {
 		return currentSize;
 	}
 
-	private int hashValue(Object x) {
+	public int hashValue(Object x) {
 		int h = x.hashCode();
 		if (h < 0) {
 			h = -h;

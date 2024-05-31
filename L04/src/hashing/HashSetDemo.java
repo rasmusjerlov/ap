@@ -5,8 +5,8 @@ package hashing;
  */
 public class HashSetDemo {
 	public static void main(String[] args) {
-		HashSetChaining names = new HashSetChaining(13);
-		// HashSetLinearProbing names = new HashSetLinearProbing(13);
+//		HashSetChaining names = new HashSetChaining(13);
+		HashSetLinearProbing names = new HashSetLinearProbing(13);
 
 		names.add("Harry");
 		names.add("Sue");
@@ -32,16 +32,16 @@ public class HashSetDemo {
 
 		System.out.println(names.size());
 		names.writeOut();
-//		System.out.println(names.contains("Romeo"));
-//
-//		 names.remove("Romeo");
-//		 System.out.println(names.contains("Romeo"));
-//		 System.out.println(names.contains("George"));
-//		 names.remove("George");
-//		 System.out.println(names.size());
-//		 System.out.println();
-//		 names.writeOut();
-//		 System.out.println();
+		System.out.println(names.contains("Romeo"));
+
+		 names.remove("Romeo");
+		 System.out.println(names.contains("Romeo"));
+		 System.out.println(names.contains("George"));
+		 names.remove("George");
+		 System.out.println(names.size());
+		 System.out.println();
+		 names.writeOut();
+		 System.out.println();
 
 	}
 }
